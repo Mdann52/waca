@@ -9,6 +9,7 @@
 
     <!-- Le styles -->
     <link href="{$baseurl}/lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="{$baseurl}/lib/fontawesome/all.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 20px;

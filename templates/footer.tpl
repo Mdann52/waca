@@ -13,7 +13,7 @@
 	<script src="{$baseurl}/lib/jquery-3.3.1.min.js" type="text/javascript"></script>
 	<script src="{$baseurl}/lib/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="{$baseurl}/lib/bootstrap-sortable/js/bootstrap-sortable.js" type="text/javascript"></script>
-
+  <script src="{$baseurl}/lib/fontawesome/all.js"
   {* initialise the tooltips *}
   <script type="text/javascript">
     $(function () {

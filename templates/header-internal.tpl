@@ -29,6 +29,10 @@
           padding-right: 5px;
         }
       }
+
+      nav a, nav a:hover{
+        color: lightgrey;
+      }
     </style>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -36,79 +40,70 @@
       <script src="{$baseurl}/lib/bootstrap/js/html5shiv.js"></script>
     <![endif]-->
 
-    <!--  Temporary fix to deal with https://github.com/twbs/bootstrap/issues/7968
-	until a newer Bootstrap version with this fixed is released and we upgrade to it -->
-	<style>
-	.dropdown-backdrop {
-		position: static;
-	}
-	</style>
-
 	<!-- Our extra styles -->
     <link href="{$baseurl}/extra-styles.css" rel="stylesheet">
   </head>
 
   <body>
     <header>
-      <nav class="navbar navbar-dark navbar-fixed-top bg-dark navbar-expand-lg fixed-top">
-      <div class="container">
+      <nav class="navbar navbar-expand-md navbar-dark navbar-fixed-top bg-dark fixed-top">
+      <div class="container-fluid">
           <a class="navbar-brand" href="{$baseurl}/acc.php">Account Creation Interface</a>
           <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target=".nav-collapse" aria-controls=".nav-collapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-fas fa"></span>
           </button>
-          {block name="navmenu"}<div class="nav-collapse collapse">
-            <ul class="nav">
+          {block name="navmenu"}<div class="navbar-collapse collapse">
+            <ul class="navbar-nav">
 		        {if $userid != 0}
-              <li{* class="active"*}><a href="{$baseurl}/acc.php"><i class="icon-home icon-white"></i>&nbsp;Requests</a></li>
-			  <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-tag icon-white"></i>&nbsp;Meta&nbsp;<b class="caret"></b></a>
+              <li{* class="active"*}><a href="{$baseurl}/acc.php"><i class="fas fa-home"></i>&nbsp;&nbsp;Requests&nbsp;&nbsp;</a></li>
+			  <li class="nav-item dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-tag"></i>&nbsp;&nbsp;Meta<b class="caret"></b></a>&nbsp;&nbsp;
 				  <ul class="dropdown-menu">
-					<li><a href="{$baseurl}/acc.php?action=logs"><i class="icon-list"></i>&nbsp;Logs</a></li>
-					<li><a href="{$baseurl}/statistics.php?page=Users"><i class="icon-user"></i>&nbsp;Users</a></li>
-					<li><a href="{$baseurl}/search.php"><i class="icon-search"></i>&nbsp;Search</a></li>
-					<li><a href="{$baseurl}/statistics.php"><i class="icon-tasks"></i>&nbsp;Statistics</a></li>
+					<li><a class="dropdown-item" href="{$baseurl}/acc.php?action=logs"><i class="fas fa-list"></i>&nbsp;Logs</a></li>
+					<li><a class="dropdown-item" href="{$baseurl}/statistics.php?page=Users"><i class="fas fa-users"></i>&nbsp;Users</a></li>
+					<li><a class="dropdown-item" href="{$baseurl}/search.php"><i class="fas fa-search"></i>&nbsp;Search</a></li>
+					<li><a class="dropdown-item" href="{$baseurl}/statistics.php"><i class="fas fa-tasks"></i>&nbsp;Statistics</a></li>
 				  </ul>
 			  </li>
-              <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-wrench icon-white"></i>&nbsp;Admin&nbsp;<b class="caret"></b></a>
+        <li class="nav-item dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-wrench"></i>&nbsp;&nbsp;Admin<b class="caret"></b></a>&nbsp;&nbsp;
 				  <ul class="dropdown-menu">
-					<li><a href="{$baseurl}/acc.php?action=ban"><i class="icon-ban-circle"></i>&nbsp;Ban Management</a></li>
-					<li><a href="{$baseurl}/acc.php?action=messagemgmt"><i class="icon-print"></i>&nbsp;Message Management</a></li>
-					<li><a href="{$baseurl}/acc.php?action=emailmgmt"><i class="icon-envelope"></i>&nbsp;Close Email Management</a></li>
-					<li><a href="{$baseurl}/acc.php?action=templatemgmt"><i class="icon-file"></i>&nbsp;Welcome Template Management</a></li>
+					<li><a class="dropdown-item" href="{$baseurl}/acc.php?action=ban"><i class="fas fa-ban"></i>&nbsp;Ban Management</a></li>
+					<li><a class="dropdown-item" href="{$baseurl}/acc.php?action=messagemgmt"><i class="fas fa-print"></i>&nbsp;Message Management</a></li>
+					<li><a class="dropdown-item" href="{$baseurl}/acc.php?action=emailmgmt"><i class="fas fa-envelope"></i>&nbsp;Close Email Management</a></li>
+					<li><a class="dropdown-item" href="{$baseurl}/acc.php?action=templatemgmt"><i class="fas fa-file"></i>&nbsp;Welcome Template Management</a></li>
 					{if $currentUser->isAdmin()}
-					<li><a href="{$baseurl}/users.php"><i class="icon-user"></i> User Management</a></li>
+					<li><a class="dropdown-item" href="{$baseurl}/users.php"><i class="fas fa-user"></i> User Management</a></li>
 					{/if}
 				  </ul>
 			  </li>
-			  <li>
-				<form class="navbar-form form-search" action="{$baseurl}/acc.php">
+				<form class="nav-item form-inline" action="{$baseurl}/acc.php">
 				  <input type="hidden" name="action" value="zoom">
 				  <input class="span2" type="text" placeholder="Request ID" name="id" class="search-query">
 				</form>
-			  </li>
 			{/if}
             </ul>
-			<ul class="nav pull-right">
+			<ul class="navbar-nav pull-right ml-auto">
 			{if $userid != 0}
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i> <strong>{$username}</strong> <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li class="nav-header">Account</li>
-						<li><a href="{$baseurl}/statistics.php?page=Users&amp;user={$userid}"><i class="icon-tasks"></i> My statistics</a></li>
-						<li><a href="{$baseurl}/acc.php?action=prefs"><i class="icon-edit"></i> Edit preferences</a></li>
+				<li class="nav-item dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-user"></i> <strong>{$username}</strong> <b class="caret"></b></a>
+					<ul class="dropdown-menu dropdown-menu-right">
+						<li class="dropdown-header">Account</li>
+						<li><a class="dropdown-item" href="{$baseurl}/statistics.php?page=Users&amp;user={$userid}"><i class="fas fa-tasks"></i> My statistics</a></li>
+						<li><a class="dropdown-item" href="{$baseurl}/acc.php?action=prefs"><i class="fas fa-edit"></i> Edit preferences</a></li>
+						<li class="dropdown-divider"></li>
+						<li class="dropdown-header">Help</li>
+						<li><a class="dropdown-item" href="//en.wikipedia.org/wiki/Wikipedia:Request_an_account/Guide"><i class="fas fa-question-circle"></i>&nbsp;Guide</a></li>
+						<li><a class="dropdown-item" href="//en.wikipedia.org/wiki/Wikipedia:Username_policy"><i class="fas fa-exclamation-triangle"></i>&nbsp;Username policy</a></li>
+						<li><a class="dropdown-item" href="#modalFlowchart" role="button" data-toggle="modal"><i class="fas fa-check"></i>&nbsp;Similar account flowchart</a></li>
+						<li><a class="dropdown-item" href="https://webchat.freenode.net/?channels=wikipedia-en-accounts"><i class="fas fa-comment"></i>&nbsp;Chat</a></li>
+						<li><a class="dropdown-item" href="https://lists.wikimedia.org/mailman/listinfo/accounts-enwiki-l"><i class="fas fa-envelope"></i>&nbsp;Mailing list</a></li>
 						<li class="divider"></li>
-						<li class="nav-header">Help</li>
-						<li><a href="//en.wikipedia.org/wiki/Wikipedia:Request_an_account/Guide"><i class="icon-question-sign"></i>&nbsp;Guide</a></li>
-						<li><a href="//en.wikipedia.org/wiki/Wikipedia:Username_policy"><i class="icon-warning-sign"></i>&nbsp;Username policy</a></li>
-						<li><a href="#modalFlowchart" role="button" data-toggle="modal"><i class="icon-check"></i>&nbsp;Similar account flowchart</a></li>
-						<li><a href="https://webchat.freenode.net/?channels=wikipedia-en-accounts"><i class="icon-comment"></i>&nbsp;Chat</a></li>
-						<li><a href="https://lists.wikimedia.org/mailman/listinfo/accounts-enwiki-l"><i class="icon-envelope"></i>&nbsp;Mailing list</a></li>
-						<li class="divider"></li>
-						<li><a href="{$baseurl}/acc.php?action=logout"><i class="icon-lock"></i> Logout</a></li>
+						<li><a class="dropdown-item" href="{$baseurl}/acc.php?action=logout"><i class="fas fa-lock"></i> Logout</a></li>
 					</ul>
 				</li>
 			{else}
 				<li>
-					<p class="navbar-text">
+					<p class="nav-item navbar-text">
 						<strong>Not logged in</strong>
 					</p>
 				</li>
@@ -129,7 +124,7 @@
 		<div class="row">
 			<!-- site notice -->
 			<div class="col-md-12">
-			<div class="alert" role="alert">
+			<div class="alert alert-warning" role="alert">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
 				{$sitenotice}
 			</div>
