@@ -22,7 +22,7 @@ function zoomPage($id, $urlhash)
 	$request = Request::getById($id, $database);
 	if ($request == false) {
 		// Notifies the user and stops the script.
-		BootstrapSkin::displayAlertBox("Could not load the requested request!", "alert-error", "Error", true, false);
+		BootstrapSkin::displayAlertBox("Could not load the requested request!", "alert-danger", "Error", true, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}

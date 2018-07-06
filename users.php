@@ -67,7 +67,7 @@ if (!User::getCurrent()->isAdmin()) {
 	// Displays both the error message and the footer of the interface.
 	BootstrapSkin::displayAlertBox(
 			"I'm sorry, but, this page is restricted to administrators only.", 
-			"alert-error", 
+			"alert-danger", 
 			"Access Denied",
 			true,
 			false);
@@ -84,7 +84,7 @@ if (isset ($_GET['approve'])) {
 	if ($user == false) {
 		BootstrapSkin::displayAlertBox(
 			"Sorry, the user you are trying to approve could not be found.", 
-			"alert-error", 
+			"alert-danger", 
 			"Error",
 			true,
 			false);
@@ -95,7 +95,7 @@ if (isset ($_GET['approve'])) {
 	if ($user->isUser() || $user->isAdmin()) {
 		BootstrapSkin::displayAlertBox(
 			"Sorry, the user you are trying to approve has already been approved.", 
-			"alert-error", 
+			"alert-danger", 
 			"Error",
 			true,
 			false);
@@ -126,7 +126,7 @@ if (isset ($_GET['demote'])) {
 	if ($user == false) {
 		BootstrapSkin::displayAlertBox(
 			"Sorry, the user you are trying to demote could not be found.", 
-			"alert-error", 
+			"alert-danger", 
 			"Error",
 			true,
 			false);
@@ -137,7 +137,7 @@ if (isset ($_GET['demote'])) {
 	if (!$user->isAdmin()) {
 		BootstrapSkin::displayAlertBox(
 			"Sorry, the user you are trying to demote is not an admin.", 
-			"alert-error", 
+			"alert-danger", 
 			"Error",
 			true,
 			false);
@@ -181,7 +181,7 @@ if (isset ($_GET['suspend'])) {
 	if ($user == false) {
 		BootstrapSkin::displayAlertBox(
 			"Sorry, the user you are trying to suspend could not be found.", 
-			"alert-error", 
+			"alert-danger", 
 			"Error",
 			true,
 			false);
@@ -192,7 +192,7 @@ if (isset ($_GET['suspend'])) {
 	if ($user->isSuspended()) {
 		BootstrapSkin::displayAlertBox(
 			"Sorry, the user you are trying to suspend is already suspended.", 
-			"alert-error", 
+			"alert-danger", 
 			"Error",
 			true,
 			false);
@@ -233,7 +233,7 @@ if (isset ($_GET['promote'])) {
 	if ($user == false) {
 		BootstrapSkin::displayAlertBox(
 			"Sorry, the user you are trying to promote could not be found.", 
-			"alert-error", 
+			"alert-danger", 
 			"Error",
 			true,
 			false);
@@ -244,7 +244,7 @@ if (isset ($_GET['promote'])) {
 	if ($user->isAdmin()) {
 		BootstrapSkin::displayAlertBox(
 			"Sorry, the user you are trying to promote has Administrator access.",
-			"alert-error", 
+			"alert-danger", 
 			"Error", 
 			true, 
 			false);
@@ -275,7 +275,7 @@ if (isset ($_GET['decline'])) {
 	if ($user == false) {
 		BootstrapSkin::displayAlertBox(
 			"Sorry, the user you are trying to decline could not be found.", 
-			"alert-error", 
+			"alert-danger", 
 			"Error",
 			true,
 			false);
@@ -285,7 +285,7 @@ if (isset ($_GET['decline'])) {
 
 	if ($user->isAdmin()) {
 		BootstrapSkin::displayAlertBox("Sorry, the user you are trying to decline is not new.", 
-			"alert-error", 
+			"alert-danger", 
 			"Error", 
 			true, 
 			false);
@@ -332,7 +332,7 @@ if (isset ($_GET['rename'])) {
 	if ($user == false) {
 		BootstrapSkin::displayAlertBox(
 			"Sorry, the user you are trying to rename could not be found.", 
-			"alert-error", 
+			"alert-danger", 
 			"Error", 
 			true, 
 			false);
@@ -349,13 +349,13 @@ if (isset ($_GET['rename'])) {
 	}
 	else {
 		if (!isset($_POST['newname']) || trim($_POST['newname']) == "") {
-			BootstrapSkin::displayAlertBox("The new username cannot be empty.", "alert-error", "Error", true, false);
+			BootstrapSkin::displayAlertBox("The new username cannot be empty.", "alert-danger", "Error", true, false);
 			BootstrapSkin::displayInternalFooter();
 			die();
 		}
 
 		if (User::getByUsername($_POST['newname'], gGetDb()) != false) {
-			BootstrapSkin::displayAlertBox("Username already exists.", "alert-error", "Error", true, false);
+			BootstrapSkin::displayAlertBox("Username already exists.", "alert-danger", "Error", true, false);
 			BootstrapSkin::displayInternalFooter();
 			die();
 		}
@@ -365,7 +365,7 @@ if (isset ($_GET['rename'])) {
 		if (!$database->beginTransaction()) {
 			BootstrapSkin::displayAlertBox(
 				"Database transaction could not be started.", 
-				"alert-error", 
+				"alert-danger", 
 				"Error", 
 				true, 
 				false);
@@ -393,7 +393,7 @@ if (isset ($_GET['rename'])) {
 		}
 		catch (Exception $ex) {
 			$database->rollBack();
-			BootstrapSkin::displayAlertBox($ex->getMessage(), "alert-error", "Error", true, false);
+			BootstrapSkin::displayAlertBox($ex->getMessage(), "alert-danger", "Error", true, false);
 			BootstrapSkin::displayInternalFooter();
 			die();
 		}
@@ -417,7 +417,7 @@ if (isset ($_GET['edituser'])) {
 	if ($user == false) {
 		BootstrapSkin::displayAlertBox(
 			"Sorry, the user you are trying to rename could not be found.", 
-			"alert-error", 
+			"alert-danger", 
 			"Error", 
 			true, 
 			false);
@@ -435,7 +435,7 @@ if (isset ($_GET['edituser'])) {
 		if (!$database->beginTransaction()) {
 			BootstrapSkin::displayAlertBox(
 				"Database transaction could not be started.", 
-				"alert-error", 
+				"alert-danger", 
 				"Error", 
 				true, 
 				false);
@@ -459,7 +459,7 @@ if (isset ($_GET['edituser'])) {
 		}
 		catch (Exception $ex) {
 			$database->rollBack();
-			BootstrapSkin::displayAlertBox($ex->getMessage(), "alert-error", "Error", true, false);
+			BootstrapSkin::displayAlertBox($ex->getMessage(), "alert-danger", "Error", true, false);
 			BootstrapSkin::displayInternalFooter();
 			die();
 		}

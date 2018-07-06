@@ -125,7 +125,7 @@ abstract class StatisticsPage
 
 		if ($this->requiresWikiDatabase() && ($dontUseWikiDb == 1)) {
 // wiki database unavailable, don't show stats page
-			BootstrapSkin::displayAlertBox("This statistics page is currently unavailable.", "alert-error", "Database unavailable", true, false);
+			BootstrapSkin::displayAlertBox("This statistics page is currently unavailable.", "alert-danger", "Database unavailable", true, false);
 			BootstrapSkin::displayInternalFooter();
 			die();
 		}

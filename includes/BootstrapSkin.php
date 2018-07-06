@@ -218,7 +218,7 @@ class BootstrapSkin
 	{
 		self::displayAlertBox(
 			"I'm sorry, but you do not have permission to access this page.",
-			"alert-error",
+			"alert-danger",
 			"Access Denied",
 			true,
 			false);

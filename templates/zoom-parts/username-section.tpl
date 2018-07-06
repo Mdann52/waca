@@ -2,7 +2,7 @@
 <div class="row-fluid">
   <h3>Username data for {$request->getName()}:</h3>
   {if $request->isBlacklisted()}
-    {include file="alert.tpl" alertblock="1" alerttype="alert-error" alertclosable="0" alertheader="Requested Username is Blacklisted"
+    {include file="alert.tpl" alertblock="1" alerttype="alert-danger" alertclosable="0" alertheader="Requested Username is Blacklisted"
       alertmessage="The requested username is currently blacklisted by the regular expression <code>{$request->isBlacklisted()|escape}</code>."}
   {/if}
            
@@ -21,7 +21,7 @@
   {if !$spoofs}
     <p class="muted">None detected</p>
   {elseif !is_array($spoofs)}
-    <div class="alert alert-error">{$spoofs}</div>
+    <div class="alert alert-danger">{$spoofs}</div>
   {else}
     <table class="table table-condensed table-striped">
       {foreach $spoofs as $spoof}

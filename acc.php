@@ -192,7 +192,7 @@ elseif ($action == "sreg") {
 				throw new TransactionException(
 					$ex->getMessage(), 
 					"Connection to Wikipedia failed.", 
-					"alert-error", 
+					"alert-danger", 
 					0, 
 					$ex);
 			}
@@ -224,7 +224,7 @@ elseif ($action == "forgotpw") {
 		$user = User::getById($_GET['id'], gGetDb());
         
 		if ($user === false) {
-			BootstrapSkin::displayAlertBox("User not found.", "alert-error");
+			BootstrapSkin::displayAlertBox("User not found.", "alert-danger");
 			BootstrapSkin::displayInternalFooter();
 			die();
 		}
@@ -239,7 +239,7 @@ elseif ($action == "forgotpw") {
                     
 					BootstrapSkin::displayAlertBox(
 						"You may now <a href=\"$baseurl/acc.php\">Login</a>", 
-						"alert-error", 
+						"alert-danger", 
 						"Password reset!", 
 						true, 
 						false);
@@ -248,13 +248,13 @@ elseif ($action == "forgotpw") {
 					die();
 				}
 				else {
-					BootstrapSkin::displayAlertBox("Passwords did not match!", "alert-error", "Error", true, false);
+					BootstrapSkin::displayAlertBox("Passwords did not match!", "alert-danger", "Error", true, false);
 					BootstrapSkin::displayInternalFooter();
 					die();
 				}
 			}
 			else {
-				BootstrapSkin::displayAlertBox("Invalid request<!-- 1 -->", "alert-error", "Error", true, false);
+				BootstrapSkin::displayAlertBox("Invalid request<!-- 1 -->", "alert-danger", "Error", true, false);
 				BootstrapSkin::displayInternalFooter();
 				die();
 			}
@@ -271,7 +271,7 @@ elseif ($action == "forgotpw") {
 		else {
 			BootstrapSkin::displayAlertBox(
 				"The hash supplied in the link did not match the hash in the database!", 
-				"alert-error", 
+				"alert-danger", 
 				"Invalid request", 
 				true, 
 				false);
@@ -287,7 +287,7 @@ elseif ($action == "forgotpw") {
 		if ($user == false) {
 			BootstrapSkin::displayAlertBox(
 				"Could not find user with that username and email address!", 
-				"alert-error", 
+				"alert-danger", 
 				"Error", 
 				true, 
 				false);
@@ -297,7 +297,7 @@ elseif ($action == "forgotpw") {
 		}
 		elseif (strtolower($_POST['email']) != strtolower($user->getEmail())) {
 			BootstrapSkin::displayAlertBox("Could not find user with that username and email address!", 
-				"alert-error", 
+				"alert-danger", 
 				"Error", 
 				true, 
 				false);
@@ -461,7 +461,7 @@ elseif ($action == "messagemgmt") {
 		$message = InterfaceMessage::getById($_GET['view'], gGetDb());
                 
 		if ($message == false) {
-			BootstrapSkin::displayAlertBox("Unable to find specified message", "alert-error", "Error", true, false);
+			BootstrapSkin::displayAlertBox("Unable to find specified message", "alert-danger", "Error", true, false);
 			BootstrapSkin::displayInternalFooter();
 			die();
 		}
@@ -737,14 +737,14 @@ elseif ($action == "sban") {
 	
 	// Checks whether there is a reason entered for ban.
 	if (!isset($_POST['banreason']) || $_POST['banreason'] == "") {
-		BootstrapSkin::displayAlertBox("You must specify a ban reason", "alert-error", "", false, false);
+		BootstrapSkin::displayAlertBox("You must specify a ban reason", "alert-danger", "", false, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
 	
 	// Checks whether there is a target entered to ban.
 	if (!isset($_POST['target']) || $_POST['target'] == "") {
-		BootstrapSkin::displayAlertBox("You must specify a target to be banned", "alert-error", "", false, false);
+		BootstrapSkin::displayAlertBox("You must specify a target to be banned", "alert-danger", "", false, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
@@ -757,12 +757,12 @@ elseif ($action == "sban") {
 	elseif ($duration == "other") {
 		$duration = strtotime($_POST['otherduration']);
 		if (!$duration) {
-			BootstrapSkin::displayAlertBox("Invalid ban time", "alert-error", "", false, false);
+			BootstrapSkin::displayAlertBox("Invalid ban time", "alert-danger", "", false, false);
 			BootstrapSkin::displayInternalFooter();
 			die();
 		}
 		elseif (time() > $duration) {
-			BootstrapSkin::displayAlertBox("Ban time has already expired!", "alert-error", "", false, false);
+			BootstrapSkin::displayAlertBox("Ban time has already expired!", "alert-danger", "", false, false);
 			BootstrapSkin::displayInternalFooter();
 			die();
 		}
@@ -774,7 +774,7 @@ elseif ($action == "sban") {
 	switch ($_POST['type']) {
 		case 'IP':
 			if (filter_var($_POST['target'], FILTER_VALIDATE_IP) === false) {
-				BootstrapSkin::displayAlertBox("Invalid target - IP address expected.", "alert-error", "", false, false);
+				BootstrapSkin::displayAlertBox("Invalid target - IP address expected.", "alert-danger", "", false, false);
 				BootstrapSkin::displayInternalFooter();
 				die();
 			}
@@ -783,7 +783,7 @@ elseif ($action == "sban") {
 			if (in_array($_POST['target'], $squidIpList)) {
 				BootstrapSkin::displayAlertBox(
 					"This IP address is on the protected list of proxies, and cannot be banned.", 
-					"alert-error", 
+					"alert-danger", 
 					"", 
 					false, 
 					false);
@@ -798,7 +798,7 @@ elseif ($action == "sban") {
 			if (!preg_match(';^(?:[A-Za-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&\'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[A-Za-z0-9-]*[A-Za-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$;', $_POST['target'])) {
 				BootstrapSkin::displayAlertBox(
 					"Invalid target - email address expected.", 
-					"alert-error", 
+					"alert-danger", 
 					"", 
 					false, 
 					false);
@@ -808,13 +808,13 @@ elseif ($action == "sban") {
 			}
 			break;
 		default:
-			BootstrapSkin::displayAlertBox("I don't know what type of target you want to ban! You'll need to choose from email address, IP, or requested name.", "alert-error", "", false, false);
+			BootstrapSkin::displayAlertBox("I don't know what type of target you want to ban! You'll need to choose from email address, IP, or requested name.", "alert-danger", "", false, false);
 			BootstrapSkin::displayInternalFooter();
 			die();
 	}
         
 	if (count(Ban::getActiveBans($_POST['target'])) > 0) {
-		BootstrapSkin::displayAlertBox("This target is already banned!", "alert-error", "", false, false);
+		BootstrapSkin::displayAlertBox("This target is already banned!", "alert-danger", "", false, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
@@ -854,7 +854,7 @@ elseif ($action == "unban") {
 	if (!isset($_GET['id']) || $_GET['id'] == "") {
 		BootstrapSkin::displayAlertBox(
 			"The ID parameter appears to be missing! This is probably a bug.", 
-			"alert-error", 
+			"alert-danger", 
 			"Ahoy There! Something's not right...", 
 			true, 
 			false);
@@ -873,7 +873,7 @@ elseif ($action == "unban") {
 	if ($ban == false) {
 		BootstrapSkin::displayAlertBox(
 			"The specified ban ID is not currently active or doesn't exist!", 
-			"alert-error", 
+			"alert-danger", 
 			"", 
 			false, 
 			false);
@@ -884,7 +884,7 @@ elseif ($action == "unban") {
 
 	if (isset($_GET['confirmunban']) && $_GET['confirmunban'] == "true") {
 		if (!isset($_POST['unbanreason']) || $_POST['unbanreason'] == "") {
-			BootstrapSkin::displayAlertBox("You must enter an unban reason!", "alert-error", "", false, false);
+			BootstrapSkin::displayAlertBox("You must enter an unban reason!", "alert-danger", "", false, false);
 			BootstrapSkin::displayInternalFooter();
 			die();
 		}
@@ -920,7 +920,7 @@ elseif ($action == "ban") {
     
 	if (isset ($_GET['ip']) || isset ($_GET['email']) || isset ($_GET['name'])) {
 		if (!User::getCurrent()->isAdmin() && !User::getCurrent()->isCheckuser()) {
-			BootstrapSkin::displayAlertBox("Only administrators or checkusers may ban users", "alert-error");
+			BootstrapSkin::displayAlertBox("Only administrators or checkusers may ban users", "alert-danger");
 			BootstrapSkin::displayInternalFooter();
 			die();
 		}
@@ -955,13 +955,13 @@ elseif ($action == "ban") {
 			$type = "Name";
 		}
 		else {
-			BootstrapSkin::displayAlertBox("Unknown ban type.", "alert-error");
+			BootstrapSkin::displayAlertBox("Unknown ban type.", "alert-danger");
 			BootstrapSkin::displayInternalFooter();
 			die();    
 		}
         
 		if (count(Ban::getActiveBans($target))) {
-			BootstrapSkin::displayAlertBox("This target is already banned!", "alert-error");
+			BootstrapSkin::displayAlertBox("This target is already banned!", "alert-danger");
 			BootstrapSkin::displayInternalFooter();
 			die();
 		} 
@@ -989,7 +989,7 @@ elseif ($action == "defer" && $_GET['id'] != "" && $_GET['sum'] != "") {
 		if ($request == false) {
 			BootstrapSkin::displayAlertBox(
 				"Could not find the specified request!", 
-				"alert-error", 
+				"alert-danger", 
 				"Error!", 
 				true, 
 				false);
@@ -1063,7 +1063,7 @@ SQL;
 		die();
 	}
 	else {
-		BootstrapSkin::displayAlertBox("Defer target not valid.", "alert-error", "Error", true, false);
+		BootstrapSkin::displayAlertBox("Defer target not valid.", "alert-danger", "Error", true, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
@@ -1081,7 +1081,7 @@ elseif ($action == "prefs") {
 			$mailisvalid = filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL);
             
 			if ($mailisvalid === false) {
-				BootstrapSkin::displayAlertBox("Invalid email address", "alert-error", "Error!");
+				BootstrapSkin::displayAlertBox("Invalid email address", "alert-danger", "Error!");
 			}
 			else {
 				$user->setEmail(trim($_POST['email']));
@@ -1092,7 +1092,7 @@ elseif ($action == "prefs") {
 			$user->save();
 		}
 		catch (PDOException $ex) {
-			BootstrapSkin::displayAlertBox($ex->getMessage(), "alert-error", "Error saving Preferences", true, false);
+			BootstrapSkin::displayAlertBox($ex->getMessage(), "alert-danger", "Error saving Preferences", true, false);
 			BootstrapSkin::displayInternalFooter();
 			die();
 		}
@@ -1122,7 +1122,7 @@ elseif ($action == "done" && $_GET['id'] != "") {
 	}
     
 	if ($validEmail == false) {
-		BootstrapSkin::displayAlertBox("Invalid close reason", "alert-error", "Error", true, false);
+		BootstrapSkin::displayAlertBox("Invalid close reason", "alert-danger", "Error", true, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
@@ -1132,7 +1132,7 @@ elseif ($action == "done" && $_GET['id'] != "") {
     
 	if ($request == false) {
 		// Notifies the user and stops the script.
-		BootstrapSkin::displayAlertBox("The request ID supplied is invalid!", "alert-error", "Error", true, false);
+		BootstrapSkin::displayAlertBox("The request ID supplied is invalid!", "alert-danger", "Error", true, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
@@ -1141,7 +1141,7 @@ elseif ($action == "done" && $_GET['id'] != "") {
 	
 	// check the checksum is valid
 	if ($request->getChecksum() != $_GET['sum']) {
-		BootstrapSkin::displayAlertBox("This is similar to an edit conflict on Wikipedia; it means that you have tried to perform an action on a request that someone else has performed an action on since you loaded the page.", "alert-error", "Invalid Checksum", true, false);
+		BootstrapSkin::displayAlertBox("This is similar to an edit conflict on Wikipedia; it means that you have tried to perform an action on a request that someone else has performed an action on since you loaded the page.", "alert-danger", "Invalid Checksum", true, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
@@ -1173,7 +1173,7 @@ elseif ($action == "done" && $_GET['id'] != "") {
 	}
 	    
 	if ($request->getStatus() == "Closed") {
-		BootstrapSkin::displayAlertBox("Cannot close this request. Already closed.", "alert-error", "Error", true, false);
+		BootstrapSkin::displayAlertBox("Cannot close this request. Already closed.", "alert-danger", "Error", true, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
@@ -1373,7 +1373,7 @@ elseif ($action == "done" && $_GET['id'] != "") {
 }
 elseif ($action == "zoom") {
 	if (!isset($_GET['id'])) {
-		BootstrapSkin::displayAlertBox("No request specified!", "alert-error", "Error!", true, false);
+		BootstrapSkin::displayAlertBox("No request specified!", "alert-danger", "Error!", true, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
@@ -1551,13 +1551,13 @@ elseif ($action == "breakreserve") {
 	$request = Request::getById($_GET['resid'], $database);
         
 	if ($request == false) {
-		BootstrapSkin::displayAlertBox("Could not find request.", "alert-error", "Error", true, false);
+		BootstrapSkin::displayAlertBox("Could not find request.", "alert-danger", "Error", true, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
     
 	if ($request->getReserved() == 0) {
-		BootstrapSkin::displayAlertBox("Request is not reserved.", "alert-error", "Error", true, false);
+		BootstrapSkin::displayAlertBox("Request is not reserved.", "alert-danger", "Error", true, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
@@ -1565,7 +1565,7 @@ elseif ($action == "breakreserve") {
 	$reservedUser = $request->getReservedObject();
     
 	if ($reservedUser == false) {
-		BootstrapSkin::displayAlertBox("Could not find user who reserved the request (!!).", "alert-error", "Error", true, false);
+		BootstrapSkin::displayAlertBox("Could not find user who reserved the request (!!).", "alert-danger", "Error", true, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
@@ -1630,13 +1630,13 @@ elseif ($action == "comment-add") {
     
 	$request = Request::getById($_POST['id'], gGetDb());
 	if ($request == false) {
-		BootstrapSkin::displayAlertBox("Could not find request!", "alert-error", "Error", true, false);
+		BootstrapSkin::displayAlertBox("Could not find request!", "alert-danger", "Error", true, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
     
 	if (!isset($_POST['comment']) || $_POST['comment'] == "") {
-		BootstrapSkin::displayAlertBox("Comment must be supplied!", "alert-error", "Error", true, false);
+		BootstrapSkin::displayAlertBox("Comment must be supplied!", "alert-danger", "Error", true, false);
 		BootstrapSkin::displayInternalFooter();
 		die(); 
 	}
@@ -1649,7 +1649,7 @@ elseif ($action == "comment-add") {
     
 	//Look for and detect IPv4/IPv6 addresses in comment text, and warn the commenter.
 	if ((preg_match('/\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/', $_POST['comment']) || preg_match('/(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/', $_POST['comment'])) && $_POST['privpol-check-override'] != "override") {
-			BootstrapSkin::displayAlertBox("IP address detected in comment text.  Warning acknowledgement checkbox must be checked.", "alert-error", "Error", true, false);
+			BootstrapSkin::displayAlertBox("IP address detected in comment text.  Warning acknowledgement checkbox must be checked.", "alert-danger", "Error", true, false);
 			$smarty->assign("request", $request);
 			$smarty->assign("comment", $_POST['comment']);
 			$smarty->assign("actionLocation", "comment-add");
@@ -1689,7 +1689,7 @@ elseif ($action == "comment-add") {
 elseif ($action == "comment-quick") {
 	$request = Request::getById($_POST['id'], gGetDb());
 	if ($request == false) {
-		BootstrapSkin::displayAlertBox("Could not find request!", "alert-error", "Error", true, false);
+		BootstrapSkin::displayAlertBox("Could not find request!", "alert-danger", "Error", true, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
@@ -1707,7 +1707,7 @@ elseif ($action == "comment-quick") {
 
 	//Look for and detect IPv4/IPv6 addresses in comment text, and warn the commenter.
 	if ((preg_match('/\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/', $_POST['comment']) || preg_match('/(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/', $_POST['comment'])) && $_POST['privpol-check-override'] != "override") {
-			BootstrapSkin::displayAlertBox("IP address detected in comment text.  Warning acknowledgement checkbox must be checked.", "alert-error", "Error", true, false);
+			BootstrapSkin::displayAlertBox("IP address detected in comment text.  Warning acknowledgement checkbox must be checked.", "alert-danger", "Error", true, false);
 			$smarty->assign("request", $request);
 			$smarty->assign("comment", $_POST['comment']);
 			$smarty->assign("actionLocation", "comment-quick");
@@ -1733,21 +1733,21 @@ elseif ($action == "comment-quick") {
 elseif ($action == "changepassword") {
 	if ((!isset($_POST['oldpassword'])) || $_POST['oldpassword'] == "") {
 		//Throw an error if old password is not specified.
-		BootstrapSkin::displayAlertBox("You did not enter your old password.", "alert-error", "Error", true, false);
+		BootstrapSkin::displayAlertBox("You did not enter your old password.", "alert-danger", "Error", true, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
 	
 	if ((!isset($_POST['newpassword'])) || $_POST['newpassword'] == "") {
 		//Throw an error if new password is not specified.
-		BootstrapSkin::displayAlertBox("You did not enter your new password.", "alert-error", "Error", true, false);
+		BootstrapSkin::displayAlertBox("You did not enter your new password.", "alert-danger", "Error", true, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
 	
 	if ($_POST['newpassword'] != $_POST['newpasswordconfirm']) {
 		//Throw an error if new password does not match what is in the confirmation box.
-		BootstrapSkin::displayAlertBox("The 2 new passwords you entered do not match.", "alert-error", "Error", true, false);
+		BootstrapSkin::displayAlertBox("The 2 new passwords you entered do not match.", "alert-danger", "Error", true, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
@@ -1756,7 +1756,7 @@ elseif ($action == "changepassword") {
 	   
 	if (!$user->authenticate($_POST['oldpassword'])) {
 		//Throw an error if the old password field's value does not match the user's current password.
-		BootstrapSkin::displayAlertBox("The old password you entered is not correct.", "alert-error", "Error", true, false);
+		BootstrapSkin::displayAlertBox("The old password you entered is not correct.", "alert-danger", "Error", true, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
@@ -1777,7 +1777,7 @@ elseif ($action == "ec") {
     
 	if ($comment == false) {
 		// Only using die("Message"); for errors looks ugly.
-		BootstrapSkin::displayAlertBox("Comment not found.", "alert-error", "Error", true, false);
+		BootstrapSkin::displayAlertBox("Comment not found.", "alert-danger", "Error", true, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
@@ -1826,7 +1826,7 @@ elseif ($action == "sendtouser") {
 	/** @var Request $requestObject */
 	$requestObject = Request::getById($_POST['id'], $database);
 	if ($requestObject == false) {
-		BootstrapSkin::displayAlertBox("Request invalid", "alert-error", "Could not find request", true, false);
+		BootstrapSkin::displayAlertBox("Request invalid", "alert-danger", "Could not find request", true, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
@@ -1837,7 +1837,7 @@ elseif ($action == "sendtouser") {
 	$curuser = User::getCurrent()->getUsername();
     
 	if ($user == false) {
-		BootstrapSkin::displayAlertBox("We couldn't find the user you wanted to send the reservation to. Please check that this user exists and is an active user on the tool.", "alert-error", "Could not find user", true, false);
+		BootstrapSkin::displayAlertBox("We couldn't find the user you wanted to send the reservation to. Please check that this user exists and is an active user on the tool.", "alert-danger", "Could not find user", true, false);
 		BootstrapSkin::displayInternalFooter();
 		die();
 	}
@@ -2038,7 +2038,7 @@ elseif ($action == "oauthattach") {
         
 		}
 		catch (Exception $ex) {
-			throw new TransactionException($ex->getMessage(), "Connection to Wikipedia failed.", "alert-error", 0, $ex);
+			throw new TransactionException($ex->getMessage(), "Connection to Wikipedia failed.", "alert-danger", 0, $ex);
 		}
 	});
 }

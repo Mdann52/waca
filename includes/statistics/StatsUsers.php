@@ -58,7 +58,7 @@ class StatsUsers extends StatisticsPage
 
 		$user = User::getById($userId, $database);
 		if ($user == false) {
-			return BootstrapSkin::displayAlertBox("User not found", "alert-error", "Error", true, false, true);
+			return BootstrapSkin::displayAlertBox("User not found", "alert-danger", "Error", true, false, true);
 		}
 
 		global $smarty;

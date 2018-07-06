@@ -128,7 +128,7 @@ class PdoDatabase extends PDO
 	public function transactionally($method)
 	{
 		if (!$this->beginTransaction()) {
-			BootstrapSkin::displayAlertBox("Error starting database transaction.", "alert-error", "Database transaction error", true, false);
+			BootstrapSkin::displayAlertBox("Error starting database transaction.", "alert-danger", "Database transaction error", true, false);
 			BootstrapSkin::displayInternalFooter();
 			die();
 		}

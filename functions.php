@@ -92,10 +92,10 @@ function showlogin()
 	$errorbartext = "";
 	if (isset($_GET['error'])) {
 		if ($_GET['error'] == 'authfail') {
-			$errorbartext = BootstrapSkin::displayAlertBox("Username and/or password incorrect. Please try again.", "alert-error", "Auth failure", true, false, true);
+			$errorbartext = BootstrapSkin::displayAlertBox("Username and/or password incorrect. Please try again.", "alert-danger", "Auth failure", true, false, true);
 		}
 		elseif ($_GET['error'] == 'noid') {
-			$errorbartext = BootstrapSkin::displayAlertBox("User account is not identified. Please email accounts-enwiki-l@lists.wikimedia.org if you believe this is in error.", "alert-error", "Auth failure", true, false, true);
+			$errorbartext = BootstrapSkin::displayAlertBox("User account is not identified. Please email accounts-enwiki-l@lists.wikimedia.org if you believe this is in error.", "alert-danger", "Auth failure", true, false, true);
 		}
 		elseif ($_GET['error'] == 'newacct') {
 			$errorbartext = BootstrapSkin::displayAlertBox("I'm sorry, but, your account has not been approved by a site administrator yet. Please stand by.", "alert-info", "Account pending", true, false, true);
@@ -395,7 +395,7 @@ function reattachOAuthAccount(User $user)
 		die();
 	}
 	catch (Exception $ex) {
-		throw new TransactionException($ex->getMessage(), "Connection to Wikipedia failed.", "alert-error", 0, $ex);
+		throw new TransactionException($ex->getMessage(), "Connection to Wikipedia failed.", "alert-danger", 0, $ex);
 	}     
 }
 

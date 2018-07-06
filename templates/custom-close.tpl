@@ -12,7 +12,7 @@
     <div class="control-group">
       <label for="msgbody" class="control-label">Message to be sent to the user:</label>
       <div class="controls">
-        {include file="alert.tpl" alertblock="1" alerttype="alert-error" alertclosable="0" alertheader="Caution!"
+        {include file="alert.tpl" alertblock="1" alerttype="alert-danger" alertclosable="0" alertheader="Caution!"
         alertmessage="The contents of this box will be sent as an email to the user with the signature set in <a href=\"$baseurl/acc.php?action=prefs\">your preferences</a> appended to it. <strong>If you do not set a signature in your preferences, please manually enter one at the end of your message</strong>."}
         <textarea id="msgbody" name="msgbody" rows="15" class="input-block-level">{$preloadtext|escape}</textarea>
       </div>

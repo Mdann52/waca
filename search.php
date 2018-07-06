@@ -66,7 +66,7 @@ if (isset($_GET['term']) && isset($_GET['type'])) {
 	$term = $_GET['term'];
     
 	if ($term == "" || $term == "%") {
-		BootstrapSkin::displayAlertBox("No search term entered.", "alert-error", "", false);
+		BootstrapSkin::displayAlertBox("No search term entered.", "alert-danger", "", false);
 		$smarty->display("search/searchform.tpl");
 		BootstrapSkin::displayInternalFooter();
 		die();
@@ -135,7 +135,7 @@ if (isset($_GET['term']) && isset($_GET['type'])) {
 		$smarty->display("search/searchresult.tpl");
 	}
 	else {
-		BootstrapSkin::displayAlertBox("Unknown search type", "alert-error", "Error");
+		BootstrapSkin::displayAlertBox("Unknown search type", "alert-danger", "Error");
 		$smarty->display("search/searchform.tpl");
 		BootstrapSkin::displayInternalFooter();
 		die();

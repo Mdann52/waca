@@ -38,7 +38,7 @@ if (isset($_GET['action']) && $_GET['action'] == "confirm") {
 		if (!isset($_GET['id']) || !isset($_GET['si'])) {
 			BootstrapSkin::displayAlertBox(
 				"Please check the link you received", 
-				"alert-error", 
+				"alert-danger", 
 				"Missing parameters", 
 				true, 
 				false);
@@ -52,7 +52,7 @@ if (isset($_GET['action']) && $_GET['action'] == "confirm") {
 		if ($request === false) {
 			BootstrapSkin::displayAlertBox(
 				$smarty->fetch('request/request-not-found.tpl'), 
-				"alert-error", 
+				"alert-danger", 
 				"Request not found", 
 				true, 
 				false);
@@ -86,7 +86,7 @@ if (isset($_GET['action']) && $_GET['action'] == "confirm") {
 		BootstrapSkin::displayPublicFooter();
 	}
 	catch (Exception $ex) {
-		BootstrapSkin::displayAlertBox($ex->getMessage(), "alert-error", "Unknown error", true, false);
+		BootstrapSkin::displayAlertBox($ex->getMessage(), "alert-danger", "Unknown error", true, false);
 		BootstrapSkin::displayPublicFooter();
 	}
 }
@@ -123,7 +123,7 @@ else {
 			foreach ($validationErrors as $validationError) {
 				BootstrapSkin::displayAlertBox(
 					$smarty->fetch("validation/" . $validationError->getErrorCode() . ".tpl"),
-					"alert-error");
+					"alert-danger");
 			}
             
 			$smarty->display("request/request-form.tpl");

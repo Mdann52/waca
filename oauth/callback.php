@@ -20,7 +20,7 @@ $user = User::getByRequestToken($_GET['oauth_token'], gGetDb());
 
 if ($user == false) {
 	BootstrapSkin::displayInternalHeader();
-	BootstrapSkin::displayAlertBox("Could not find request token in local store.", "alert-error", "Error", true, false);
+	BootstrapSkin::displayAlertBox("Could not find request token in local store.", "alert-danger", "Error", true, false);
 	BootstrapSkin::displayInternalFooter();
 	die();
 }
@@ -34,7 +34,7 @@ try {
 }
 catch (Exception $exception) {
 	BootstrapSkin::displayInternalHeader();
-	BootstrapSkin::displayAlertBox("OAuth Error: {$exception->getMessage()}", "alert-error", "OAuth Error", true, false);
+	BootstrapSkin::displayAlertBox("OAuth Error: {$exception->getMessage()}", "alert-danger", "OAuth Error", true, false);
 	BootstrapSkin::displayInternalFooter();
 	die();
 }

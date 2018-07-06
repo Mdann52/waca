@@ -66,7 +66,7 @@
                   <i class="icon-remove"></i>&nbsp;Email address <strong>NOT</strong> confirmed
                 {/if}
               </div>
-              <div class="span4 alert-block alert{if $currentUser->getOAuthIdentity()->blocked} alert-error{else} alert-success{/if}">
+              <div class="span4 alert-block alert{if $currentUser->getOAuthIdentity()->blocked} alert-danger{else} alert-success{/if}">
                 {if $currentUser->getOAuthIdentity()->blocked}
                 <i class="icon-remove"></i>&nbsp;<strong>Blocked on Wikipedia!</strong>
                 {else}
@@ -101,15 +101,15 @@
       <label class="control-label">Grants:</label>
       <div class="controls">
         <div class="row-fluid">
-          <div class="alert{if $currentUser->oauthCanUse()} alert-success{else} alert-error{/if} span4 alert-block">
+          <div class="alert{if $currentUser->oauthCanUse()} alert-success{else} alert-danger{/if} span4 alert-block">
             <i class="icon-{if $currentUser->oauthCanUse()}ok{else}remove{/if}"></i>&nbsp;Basic rights
           </div>
 {*
-          <div class="alert{if $currentUser->oauthCanEdit()} alert-success{else} alert-error{/if} span4 alert-block">
+          <div class="alert{if $currentUser->oauthCanEdit()} alert-success{else} alert-danger{/if} span4 alert-block">
             <i class="icon-{if $currentUser->oauthCanEdit()}ok{else}remove{/if}"></i>&nbsp;Create, edit, and move pages
           </div>
 
-          <div class="alert{if $currentUser->oauthCanCreateAccount()} alert-success{else} alert-error{/if} span4 alert-block">
+          <div class="alert{if $currentUser->oauthCanCreateAccount()} alert-success{else} alert-danger{/if} span4 alert-block">
             <i class="icon-{if $currentUser->oauthCanCreateAccount()}ok{else}remove{/if}"></i>&nbsp;Create accounts
           </div>*}
         </div>

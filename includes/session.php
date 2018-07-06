@@ -30,7 +30,7 @@ class session
 			
 			echo "You have been forcibly logged out, probably due to being renamed. Please log back in.";
             
-			BootstrapSkin::displayAlertBox("You have been forcibly logged out, probably due to being renamed. Please log back in.", "alert-error", "Logged out", true, false);
+			BootstrapSkin::displayAlertBox("You have been forcibly logged out, probably due to being renamed. Please log back in.", "alert-danger", "Logged out", true, false);
             
 			$user->setForceLogout(0);
 			$user->save();
@@ -80,7 +80,7 @@ class session
 		}
         
 		if (User::getCurrent()->isNew()) {
-			BootstrapSkin::displayAlertBox("I'm sorry, but, your account has not been approved by a site administrator yet. Please stand by.", "alert-error", "New account", true, false);
+			BootstrapSkin::displayAlertBox("I'm sorry, but, your account has not been approved by a site administrator yet. Please stand by.", "alert-danger", "New account", true, false);
 			BootstrapSkin::displayInternalFooter();
 			die();
 		}

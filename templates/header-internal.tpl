@@ -8,6 +8,7 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <link href="{$baseurl}/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
       body {
@@ -48,19 +49,16 @@
   </head>
 
   <body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+    <header>
+      <nav class="navbar navbar-dark navbar-fixed-top bg-dark navbar-expand-lg fixed-top">
+      <div class="container">
+          <a class="navbar-brand" href="{$baseurl}/acc.php">Account Creation Interface</a>
+          <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target=".nav-collapse" aria-controls=".nav-collapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
           </button>
-          <a class="brand" href="{$baseurl}/acc.php">Account Creation Interface</a>
           {block name="navmenu"}<div class="nav-collapse collapse">
             <ul class="nav">
-			{if $userid != 0}
+		        {if $userid != 0}
               <li{* class="active"*}><a href="{$baseurl}/acc.php"><i class="icon-home icon-white"></i>&nbsp;Requests</a></li>
 			  <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-tag icon-white"></i>&nbsp;Meta&nbsp;<b class="caret"></b></a>
 				  <ul class="dropdown-menu">
@@ -110,27 +108,28 @@
 				</li>
 			{else}
 				<li>
-					<p class="navbar-text pull-right">
+					<p class="navbar-text">
 						<strong>Not logged in</strong>
 					</p>
 				</li>
 			{/if}
 			</ul>
           </div><!--/.nav-collapse -->{/block}
-        </div>
       </div>
-    </div>
+    </nav>
+  </header>
+
 
 	{block name="modals"}{include file="modal-flowchart.tpl"}{/block}
 
 
-    <div class="container-fluid">
+    <div class="container">
 	{block name="sitenotice"}
 	{if $userid != 0}
-		<div class="row-fluid">
+		<div class="row">
 			<!-- site notice -->
-			<div class="span12">
-			<div class="alert alert-block">
+			<div class="col-md-12">
+			<div class="alert" role="alert">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
 				{$sitenotice}
 			</div>
