@@ -13,6 +13,8 @@
       body {
         padding-top: 20px;
         padding-bottom: 40px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px
       }
     </style>
     <link href="{$baseurl}/lib/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
@@ -21,7 +23,7 @@
     <!--[if lt IE 9]>
       <script src="{$baseurl}/lib/bootstrap/js/html5shiv.js"></script>
     <![endif]-->
-    
+
 	<!--  Temporary fix to deal with https://github.com/twbs/bootstrap/issues/7968
 	until a newer Bootstrap version with this fixed is released and we upgrade to it -->
 	<style>
@@ -32,15 +34,13 @@
   </head>
 
   <body>
-
       <div class="container">
-
-          <div class="masthead">
-              <ul class="nav nav-pills pull-right">
-                  <li class="active"><a href="#">Request</a></li>
-                  <li><a href="//en.wikipedia.org/wiki/Main_Page">Back to Wikipedia</a></li>
+          <div class="row">
+              <h3 class="text-muted col-sm">Request an Account</h3>
+              <ul class="nav col-sm nav-pills justify-content-end">
+                  <li class="nav-item"><a class="nav-link active" href="#">Request</a></li>
+                  <li class="nav-item"><a class="nav-link"href="//en.wikipedia.org/wiki/Main_Page">Back to Wikipedia</a></li>
               </ul>
-              <h3 class="muted">Request an Account</h3>
           </div>
 
           <hr>
