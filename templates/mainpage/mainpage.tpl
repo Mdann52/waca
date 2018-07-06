@@ -1,21 +1,23 @@
-<div class="row-fluid">
+<div class="row">
   <div class="page-header">
 	  <h1>Create an account!</h1>
   </div>
 </div>
 
-<div class="row-fluid">
+<div class="row">
 
-  <div class="accordion" id="requestListAccordion">
+  <div class="accordion col-md-12" id="requestListAccordion">
     {foreach from=$requestSectionData key="header" item="section"}
-    <div class="accordion-group">
-      <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#requestListAccordion" href="#collapse{$section.api}">
-          {$header} <span class="badge {if $section.total > $requestLimitShowOnly}badge-important{else}badge-info{/if}">{if $section.total > 0}{$section.total}{/if}</span>
-        </a>
+    <div class="card">
+      <div class="card-heading">
+        <h5 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-parent="#requestListAccordion" href="#collapse{$section.api}" aria-expanded="true" aria-controls="collapse{$section.api}">
+            {$header} <span class="badge {if $section.total > $requestLimitShowOnly}badge-important{else}badge-info{/if}">{if $section.total > 0}{$section.total}{/if}</span>
+          </button>
+        </h5>
       </div>
-      <div id="collapse{$section.api}" class="accordion-body collapse out">
-        <div class="accordion-inner">
+      <div id="collapse{$section.api}" class="collapse">
+        <div class="card-body">
           {include file="mainpage/requestlist.tpl" requests=$section showStatus=false type=$section.type}
         </div>
       </div>
